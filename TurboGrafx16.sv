@@ -300,11 +300,18 @@ wire [15:0] sdram_sz;
 wire [10:0] ps2_key;
 wire [24:0] ps2_mouse;
 
-//  Z  Y  X   A S M  B C UDLR 
-// VI  V IV III R S II I UDLR
-wire [31:0] joy_0 = joydb_1ena ? (OSD_STATUS? 32'b000000 : {joydb_1[9],joydb_1[8],joydb_1[7],joydb_1[4],joydb_1[10],joydb_1[11]|(joydb_1[10]&joydb_1[5]),joydb_1[5],joydb_1[6],joydb_1[3:0]}) : joy_0_USB;
-wire [31:0] joy_1 = joydb_2ena ? (OSD_STATUS? 32'b000000 : {joydb_2[9],joydb_2[8],joydb_2[7],joydb_2[4],joydb_2[10],joydb_2[11]|(joydb_2[10]&joydb_2[5]),joydb_2[5],joydb_2[6],joydb_2[3:0]}) : joydb_1ena ? joy_0_USB : joy_1_USB;
-wire [31:0] joy_2 = joydb_2ena ? joy_0_USB : joydb_1ena ? joy_1_USB : joy_2_USB;
+// ORIG
+//  Z  Y  X   A  S     M      B  C UDLR
+//  9  8  7   4 10  11|10&5   5  6  3:0
+// VI  V IV III  R     S     II  I UDLR
+
+//Mod
+//  Z  Y  X   A  S     M      B  C UDLR
+//  9  8  7   5 10  11|10&5   4  6  3:0
+// VI  V IV III  R     S     II  I UDLR
+
+wire [31:0] joy_0 = joydb_1ena ? (OSD_STATUS? 32'b000000 : {joydb_1[9],joydb_1[8],joydb_1[7],joydb_1[6],joydb_1[10],joydb_1[11]|(joydb_1[10]&joydb_1[5]),joydb_1[4],joydb_1[5],joydb_1[3:0]}) : joy_0_USB;
+wire [31:0] joy_1 = joydb_2ena ? (OSD_STATUS? 32'b000000 : {joydb_2[9],joydb_2[8],joydb_2[7],joydb_2[6],joydb_2[10],joydb_2[11]|(joydb_2[10]&joydb_2[5]),joydb_2[4],joydb_2[5],joydb_2[3:0]}) : joydb_1ena ? joy_0_USB : joy_1_USB;wire [31:0] joy_2 = joydb_2ena ? joy_0_USB : joydb_1ena ? joy_1_USB : joy_2_USB;
 wire [31:0] joy_3 = joydb_2ena ? joy_1_USB : joydb_1ena ? joy_2_USB : joy_3_USB;
 wire [31:0] joy_4 = joydb_2ena ? joy_2_USB : joydb_1ena ? joy_3_USB : joy_4_USB;
 
