@@ -174,7 +174,7 @@ parameter CONF_STR = {
 	"FS1,SGX,Load SuperGrafx;",
 `endif
 	"-;",
-	"S0,CUE,Insert CD;",
+	"S0,CUE,Select CD Game;",
 	"-;",
 	"C,Cheats;",
 	"H1OO,Cheats enabled,ON,OFF;",
@@ -190,7 +190,7 @@ parameter CONF_STR = {
 	"P1-;",
 	"P1OH,Overscan,Hidden,Visible;",
 	"P1OF,Border Color,Original,Black;",
-	"P1OB,Sprites per line,Normal,Extra;",
+	"P1OB,Sprites per line,Normal(16),Extra(64);",
 	"P1-;",
 	"P1OK,CD Audio Boost,No,2x;",
 	"P1OIJ,Master Audio Boost,No,2x,4x;",
